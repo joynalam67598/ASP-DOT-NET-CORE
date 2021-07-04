@@ -4,6 +4,7 @@ C:\Users\DELL\Desktop\DOT NET\dot net core 04-07-2021\Console App To Web App\Fir
 C:\Users\DELL\Desktop\DOT NET\dot net core 04-07-2021\Console App To Web App\FirstConsoleApp\FirstConsoleApp\bin\Debug\netcoreapp3.1\FirstConsoleApp.runtimeconfig.dev.json
 C:\Users\DELL\Desktop\DOT NET\dot net core 04-07-2021\Console App To Web App\FirstConsoleApp\FirstConsoleApp\bin\Debug\netcoreapp3.1\FirstConsoleApp.dll
 C:\Users\DELL\Desktop\DOT NET\dot net core 04-07-2021\Console App To Web App\FirstConsoleApp\FirstConsoleApp\bin\Debug\netcoreapp3.1\FirstConsoleApp.pdb
+C:\Users\DELL\Desktop\DOT NET\dot net core 04-07-2021\Console App To Web App\FirstConsoleApp\FirstConsoleApp\obj\Debug\netcoreapp3.1\FirstConsoleApp.csprojAssemblyReference.cache
 C:\Users\DELL\Desktop\DOT NET\dot net core 04-07-2021\Console App To Web App\FirstConsoleApp\FirstConsoleApp\obj\Debug\netcoreapp3.1\FirstConsoleApp.AssemblyInfoInputs.cache
 C:\Users\DELL\Desktop\DOT NET\dot net core 04-07-2021\Console App To Web App\FirstConsoleApp\FirstConsoleApp\obj\Debug\netcoreapp3.1\FirstConsoleApp.AssemblyInfo.cs
 C:\Users\DELL\Desktop\DOT NET\dot net core 04-07-2021\Console App To Web App\FirstConsoleApp\FirstConsoleApp\obj\Debug\netcoreapp3.1\FirstConsoleApp.csproj.CoreCompileInputs.cache
