@@ -5,17 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="StaticFiles\logo.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="StaticFiles\logo.png">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="Views\Book\" />
     <Folder Include="wwwroot\js\" />
   </ItemGroup>
