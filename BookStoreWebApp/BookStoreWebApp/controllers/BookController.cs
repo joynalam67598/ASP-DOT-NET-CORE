@@ -20,7 +20,7 @@ namespace BookStoreWebApp.Controllers
         public ViewResult GetAllBooks()
         {
             var data = _bookRepository.GetAllBooks();
-            return View();
+            return View(data);
         }
 
         public BookModel GetBook(int id)
@@ -30,7 +30,7 @@ namespace BookStoreWebApp.Controllers
 
         public List<BookModel> SearchBooks(string bookName, string authorName)
         {
-            return _bookRepository.SecarchBook(bookName, authorName);
+            return _bookRepository.SearchBook(bookName, authorName);
         }
     }
 }

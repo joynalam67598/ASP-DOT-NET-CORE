@@ -15,11 +15,11 @@ namespace BookStoreWebApp.Repository
         }
         public BookModel GetBookById( int id)
         {
-            return DataSource().Where(x => x.Id == id).FirstOrDefault();
+            return DataSource().FirstOrDefault(x => x.Id == id);
         }
-        public List<BookModel> SecarchBook(string title, string author)
+        public List<BookModel> SearchBook(string title, string author)
         {
-            return DataSource().Where(x => x.Title == title && x.Author == author).ToList();
+            return DataSource().Where(x => x.Title == title || x.Author == author).ToList();
         }
         public List<BookModel> DataSource()
         {
