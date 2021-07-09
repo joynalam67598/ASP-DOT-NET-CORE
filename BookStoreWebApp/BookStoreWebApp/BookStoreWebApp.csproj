@@ -4,20 +4,4 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Content Remove="Views\Book\GetAllBooks.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <UpToDateCheckInput Remove="Views\Book\GetAllBooks.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="Views\Book\GetAllBooks.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Views\Book\GetAllBooks.cshtml" />
-  </ItemGroup>
-
 </Project>
