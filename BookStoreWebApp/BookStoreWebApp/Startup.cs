@@ -23,41 +23,25 @@ namespace BookStoreWebApp
             services.AddRazorPages().AddRazorRuntimeCompilation();
 #endif
         }
-
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-            public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
             {
                 if (env.IsDevelopment())
                 {
                     app.UseDeveloperExceptionPage();
                 }
-
-                //app.Use(async (constext, next) =>
-                //{
-                //    await constext.Response.WriteAsync("1st Middlewre \n"); // 1st
-                //    await next();
-                //    await constext.Response.WriteAsync("1st Middlewre Response \n"); // 5th
-                //});
-
-                //app.Use(async (constext, next) =>
-                //{
-                //    await constext.Response.WriteAsync("2nd Middlewre \n"); // 2nd
-                //    await next();
-                //    await constext.Response.WriteAsync("2nd Middlewre Response \n"); // 4th
-                //});
-
-                //app.Use(async (constext, next) =>
-                //{
-                //    await constext.Response.WriteAsync("3nd Middlewre \n"); //3rd
-                //    // Next use na korle nicher code golu ar run hobe na.
-                //    await next();
-                //});
+                
                 app.UseStaticFiles();
 
                 app.UseRouting();
 
-                app.UseEndpoints(endpoints => { endpoints.MapDefaultControllerRoute(); });
+                app.UseEndpoints(endpoints =>
+                {
+                    endpoints.MapDefaultControllerRoute();
+                    //endpoints.MapControllerRoute(
+                    //    name: "Default",
+                    //    pattern: "bookapp/{controller = Home}/{action = Index}/{id?}"
+                    //);
+                });
             }
         }
     }

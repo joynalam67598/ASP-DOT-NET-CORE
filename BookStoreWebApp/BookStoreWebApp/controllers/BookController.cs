@@ -22,7 +22,7 @@ namespace BookStoreWebApp.Controllers
             var data = _bookRepository.GetAllBooks();
             return View(data);
         }
-
+        [Route(template: "book-details/{id}",Name = "bookDetailsRoute")]
         public ViewResult GetBook(int id)
         {
             var data = _bookRepository.GetBookById(id);

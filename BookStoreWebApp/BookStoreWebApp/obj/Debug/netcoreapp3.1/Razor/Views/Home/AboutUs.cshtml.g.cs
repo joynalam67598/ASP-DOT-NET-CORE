@@ -20,7 +20,7 @@ using BookStoreWebApp.model;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0edea96c7acde1b9cd5f8a2063fb88d89aa3b5c8", @"/Views/Home/AboutUs.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"642a14d1cb9fffc4f7aaf7aecaa236210e7b3284", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"69095a1c12df9e7ecb0268d727dae594918bc12b", @"/Views/_ViewImports.cshtml")]
     public class Views_Home_AboutUs : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<object>
     {
         #pragma warning disable 1998
