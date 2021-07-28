@@ -12,9 +12,9 @@ namespace BookStoreWebApp.Controllers
         // type of the repository.
         public readonly BookRepository _bookRepository = null;
 
-        public BookController()
+        public BookController(BookRepository bookRepository)
         {
-            _bookRepository = new BookRepository();
+            _bookRepository = bookRepository;
         }
 
         public ViewResult GetAllBooks()
@@ -32,6 +32,23 @@ namespace BookStoreWebApp.Controllers
         public List<BookModel> SearchBooks(string bookName, string authorName)
         {
             return _bookRepository.SearchBook(bookName, authorName);
+        }
+
+        public ViewResult AddBook(bool isSuccess=false, int bookId = 0)
+        {
+            ViewBag.isSuccess = isSuccess;
+            ViewBag.bookId = bookId;
+            return View();
+        }
+        [HttpPost]
+        public IActionResult AddBook(BookModel bookModel)
+        {
+            var bookId = _bookRepository.AddNewBook(bookModel);
+            if (bookId > 0)
+            {
+                return RedirectToAction(nameof(AddBook),new{ isSuccess = true , bookId = bookId});
+            }
+            return View();
         }
     }
 }

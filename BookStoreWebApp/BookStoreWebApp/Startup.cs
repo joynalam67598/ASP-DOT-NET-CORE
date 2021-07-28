@@ -9,6 +9,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using BookStoreWebApp.Data;
+using BookStoreWebApp.Repository;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookStoreWebApp
 {
@@ -18,7 +21,10 @@ namespace BookStoreWebApp
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<BookStoreContext>(options => options.UseSqlServer("Server=.\\SQLExpress; Database=BookStore; Integrated Security=True;"));
             services.AddControllersWithViews();
+            services.AddScoped<BookRepository, BookRepository>();
+                // .\SQLEXPRESS
 #if DEBUG
             services.AddRazorPages().AddRazorRuntimeCompilation();
 #endif

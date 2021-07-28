@@ -3,12 +3,36 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BookStoreWebApp.Data;
 
 namespace BookStoreWebApp.Repository
 {
     public class BookRepository
     {
-        // we can write all kind of logic here , works like provider
+        private readonly BookStoreContext  _context = null;
+
+        public BookRepository(BookStoreContext context)
+        {
+            _context = context;
+        }
+        public int AddNewBook(BookModel bookModel)
+        {
+            var newBook = new Books()
+            {
+                Title = bookModel.Title,
+                Author = bookModel.Author,
+                Description = bookModel.Description,
+                TotalPages = bookModel.TotalPages,
+                CreatedOn = DateTime.UtcNow,
+                UpdatedOn = DateTime.UtcNow,
+
+
+            };
+            _context.Books.Add(newBook);
+            _context.SaveChanges();
+            return newBook.Id;
+
+        }
         public List<BookModel> GetAllBooks()
         {
             return DataSource();
