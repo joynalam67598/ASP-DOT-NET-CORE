@@ -17,16 +17,16 @@ namespace BookStoreWebApp.Controllers
             _bookRepository = bookRepository;
         }
 
-        public ViewResult GetAllBooks()
+        public async Task<ViewResult> GetAllBooks()
         {
-            var data = _bookRepository.GetAllBooks();
-            return View(data);
+            var allBooks = await _bookRepository.GetAllBooks();
+            return View(allBooks);
         }
         [Route(template: "book-details/{id}",Name = "bookDetailsRoute")]
-        public ViewResult GetBook(int id)
+        public async Task<ViewResult> GetBook(int id)
         {
-            var data = _bookRepository.GetBookById(id);
-            return View(data);
+            var bookDetails = await _bookRepository.GetBookById(id);
+            return View(bookDetails);
         }
 
         public List<BookModel> SearchBooks(string bookName, string authorName)

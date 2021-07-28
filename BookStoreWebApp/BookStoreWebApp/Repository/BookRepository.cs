@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BookStoreWebApp.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookStoreWebApp.Repository
 {
@@ -33,13 +34,50 @@ namespace BookStoreWebApp.Repository
             return newBook.Id;
 
         }
-        public List<BookModel> GetAllBooks()
+        public async Task<List<BookModel>> GetAllBooks()
         {
-            return DataSource();
+            var books = new List<BookModel>();
+            var allBooks = await _context.Books.ToListAsync();
+            if (allBooks?.Any() == true)
+            {
+                foreach (var book in allBooks)
+                {
+                    books.Add(new BookModel()
+                        {
+                            Id = book.Id,
+                            Title = book.Title,
+                            Description = book.Description,
+                            Author = book.Author,
+                            Category = book.Category,
+                            Language = book.Language,
+                            TotalPages = book.TotalPages,
+
+                        }
+                    );
+                }
+            }
+
+            return books;
         }
-        public BookModel GetBookById( int id)
+        public async Task<BookModel> GetBookById( int id)
         {
-            return DataSource().FirstOrDefault(x => x.Id == id);
+            var book = await _context.Books.FindAsync(id);
+            if (book != null)
+            {
+                var bookDetails = new BookModel()
+                {
+                    Id = book.Id,
+                    Title = book.Title,
+                    Description = book.Description,
+                    Author = book.Author,
+                    Category = book.Category,
+                    Language = book.Language,
+                    TotalPages = book.TotalPages,
+                };
+                return bookDetails;
+            }
+
+            return null;
         }
         public List<BookModel> SearchBook(string title, string author)
         {
