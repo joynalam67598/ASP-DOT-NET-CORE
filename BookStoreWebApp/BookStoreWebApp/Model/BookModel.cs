@@ -8,6 +8,9 @@ namespace BookStoreWebApp.model
 {
     public class BookModel
     {
+        [DataType(DataType.Date)]
+        [Display(Name = "Date")]
+        public string MyFiled { get; set; }
         public int Id { get; set; }
         [Required(ErrorMessage = "Please, enter the title of your book")]
         [StringLength(50,MinimumLength = 3)]
