@@ -9,7 +9,6 @@ namespace BookStoreWebApp.Controllers
 {
     public class BookController : Controller
     {
-        // type of the repository.
         public readonly BookRepository _bookRepository = null;
 
         public BookController(BookRepository bookRepository)
@@ -43,11 +42,16 @@ namespace BookStoreWebApp.Controllers
         [HttpPost]
         public IActionResult AddBook(BookModel bookModel)
         {
-            var bookId = _bookRepository.AddNewBook(bookModel);
-            if (bookId > 0)
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(AddBook),new{ isSuccess = true , bookId = bookId});
+                var bookId = _bookRepository.AddNewBook(bookModel);
+                if (bookId > 0)
+                {
+                    return RedirectToAction(nameof(AddBook), new { isSuccess = true, bookId = bookId });
+                }
+
             }
+            ModelState.AddModelError("","This is custom error message");
             return View();
         }
     }
