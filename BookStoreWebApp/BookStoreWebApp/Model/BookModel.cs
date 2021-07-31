@@ -22,6 +22,7 @@ namespace BookStoreWebApp.model
         [StringLength(500, MinimumLength = 3)]
         public string Description { get; set; }
         public string Category { get; set; }
+        [Required]
         public string Language { get; set; }
         [Required(ErrorMessage = "Please, enter the total page number of your book")]
         [Range(100,1000)]

@@ -23,6 +23,7 @@ namespace BookStoreWebApp.Repository
                 Title = bookModel.Title,
                 Author = bookModel.Author,
                 Description = bookModel.Description,
+                Language = bookModel.Language,
                 TotalPages = bookModel.TotalPages,
                 CreatedOn = DateTime.UtcNow,
                 UpdatedOn = DateTime.UtcNow,
