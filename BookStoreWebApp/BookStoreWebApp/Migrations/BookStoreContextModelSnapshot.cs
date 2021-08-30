@@ -38,8 +38,8 @@ namespace BookStoreWebApp.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Language")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("LanguageId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
@@ -52,7 +52,36 @@ namespace BookStoreWebApp.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("LanguageId");
+
                     b.ToTable("Books");
+                });
+
+            modelBuilder.Entity("BookStoreWebApp.Data.Language", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Languages");
+                });
+
+            modelBuilder.Entity("BookStoreWebApp.Data.Books", b =>
+                {
+                    b.HasOne("BookStoreWebApp.Data.Language", "Language")
+                        .WithMany("Books")
+                        .HasForeignKey("LanguageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

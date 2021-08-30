@@ -1,4 +1,5 @@
-﻿@model BookModel
+﻿@using BookStoreWebApp.Enum
+@model BookModel
 @{
     ViewData["Title"] = "AddBook";
     string selectedValue = "English";
@@ -42,16 +43,24 @@
             <span asp-validation-for="Description" class="text-danger"></span>
         </div>
         <div>
-            <label asp-for="Language"></label>
-            <select asp-for="Language" class="form-control" asp-items="@ViewBag.Language" required>
+            @* <label asp-for="LanguageIdId"></label> *@
+            @* <select asp-for="LanguageIdId" class="form-control" asp-items="@ViewBag.LanguageIdId" required> *@
+            @*     <option value="" selected disabled>Select a language</option> *@
+            @* </select> *@
+            @* <label asp-for="MultiLanguageIdId"></label> *@
+            @* <select asp-for="MultiLanguageIdId" class="form-control" asp-items="@ViewBag.LanguageIdId" multiple required> *@
+            @*     <option value="" selected disabled>Select a language</option> *@
+            @* </select> *@
+            <label asp-for="LanguageId"></label>
+            <select asp-for="LanguageId" class="form-control" asp-items="Html.GetEnumSelectList<LanguageEnum>()" required>
                 <option value="" selected disabled>Select a language</option>
             </select>
-            @* <select asp-for="Language" class="form-control" required> *@
+            @* <select asp-for="LanguageIdId" class="form-control" required> *@
             @*     <option value="" selected disabled >Select a language</option> *@
             @*     <option value="ban">বাংলা</option> *@
             @*     <option value="eng">English</option> *@
             @* </select> *@
-            <span asp-validation-for="Language" class="text-danger"></span>
+            <span asp-validation-for="LanguageId" class="text-danger"></span>
         </div>
         <div>
             <label asp-for="TotalPages"></label>

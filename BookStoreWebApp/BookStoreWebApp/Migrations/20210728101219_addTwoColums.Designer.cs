@@ -36,7 +36,7 @@ namespace BookStoreWebApp.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Language")
+                    b.Property<string>("LanguageId")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
