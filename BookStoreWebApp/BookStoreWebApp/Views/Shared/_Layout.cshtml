@@ -84,7 +84,6 @@
             </div>
         </div>
     </nav>
-    @RenderSection("breadcrumb", required: false)
     <main role="main">
         @RenderBody()
     </main>
@@ -92,6 +91,7 @@
         <div class="container">
             <p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p>
         </div>
+        <custom-email></custom-email>
     </footer>
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -99,8 +99,5 @@
     <script src="~/lib/jquery/jquery.js"></script>
     <script src="~/js/scripts.js"></script>
 
-    @RenderSectionAsync("Script", required: false)
 </body>
-
-
 </html>
