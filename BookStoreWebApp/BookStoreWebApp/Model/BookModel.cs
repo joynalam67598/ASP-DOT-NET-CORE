@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using BookStoreWebApp.Enum;
+using BookStoreWebApp.Helpers;
 
 namespace BookStoreWebApp.model
 {
@@ -13,8 +14,9 @@ namespace BookStoreWebApp.model
         [Display(Name = "Date")]
         public string MyFiled { get; set; }
         public int Id { get; set; }
-        [Required(ErrorMessage = "Please, enter the title of your book")]
-        [StringLength(50,MinimumLength = 3)]
+        // [Required(ErrorMessage = "Please, enter the title of your book")]
+        // [StringLength(50,MinimumLength = 3)]
+        [MyCustomValidation("mvc")]
         public string Title { get; set; }
         [Required(ErrorMessage = "Please, enter the author name of your book")]
         [StringLength(25, MinimumLength = 3)]
