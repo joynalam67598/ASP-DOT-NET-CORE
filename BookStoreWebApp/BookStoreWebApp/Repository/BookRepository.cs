@@ -51,7 +51,7 @@ namespace BookStoreWebApp.Repository
                             Author = book.Author,
                             Category = book.Category,
                             LanguageId = book.LanguageId,
-                            Language = book.Language.Name,
+                            // Language = book.Language.Name,
                             TotalPages = book.TotalPages,
 
                         }

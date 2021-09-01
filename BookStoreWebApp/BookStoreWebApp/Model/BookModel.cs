@@ -15,7 +15,7 @@ namespace BookStoreWebApp.model
         public string MyFiled { get; set; }
         public int Id { get; set; }
         // [Required(ErrorMessage = "Please, enter the title of your book")]
-        // [StringLength(50,MinimumLength = 3)]
+       // [StringLength(50,MinimumLength = 3)]
         [MyCustomValidation("mvc")]
         public string Title { get; set; }
         [Required(ErrorMessage = "Please, enter the author name of your book")]
