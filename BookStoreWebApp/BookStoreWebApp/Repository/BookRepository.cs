@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BookStoreWebApp.Data;
+using BookStoreWebApp.Model;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookStoreWebApp.Repository
@@ -31,6 +32,16 @@ namespace BookStoreWebApp.Repository
 
 
             };
+            newBook.BookGalleries = new List<BookGallery>();
+            foreach (var gallery in bookModel.Gallery)
+            {
+                newBook.BookGalleries.Add(new BookGallery()
+                {
+                    Name = gallery.Name,
+                    Url = gallery.Url,
+                });
+
+            }
             _context.Books.Add(newBook);
             _context.SaveChanges();
             return newBook.Id;
@@ -77,6 +88,12 @@ namespace BookStoreWebApp.Repository
                     Language = book.Language.Name,
                     TotalPages = book.TotalPages,
                     CoverImageUrl = book.CoverImage,
+                    Gallery = book.BookGalleries.Select(g => new GalleryModel()
+                    {
+                        Id = g.Id,
+                        Name = g.Name,
+                        Url = g.Url,
+                    }).ToList()
 
                 }).FirstOrDefaultAsync();
         }

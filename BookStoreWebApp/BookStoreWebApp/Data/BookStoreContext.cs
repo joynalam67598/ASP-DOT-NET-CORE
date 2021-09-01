@@ -11,5 +11,6 @@ namespace BookStoreWebApp.Data
 
         public DbSet<Books> Books { get; set; }
         public DbSet<Language> Languages { get; set; }
+        public DbSet<BookGallery> BookGalleries { get; set; }
     }
 }

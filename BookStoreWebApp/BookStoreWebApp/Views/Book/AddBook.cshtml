@@ -55,7 +55,7 @@
                 <span asp-validation-for="LanguageId" class="text-danger"></span>
             </div>
             <div>
-                <label asp-for="TotalPages" ></label>
+                <label asp-for="TotalPages"></label>
                 <input asp-for="TotalPages" class="form-control" required />
                 <span asp-validation-for="TotalPages" class="text-danger"></span>
             </div>
@@ -63,6 +63,11 @@
                 <label asp-for="CoverPhoto"></label>
                 <input asp-for="CoverPhoto" class="form-control" required>
                 <span asp-validation-for="CoverPhoto" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="GalleryPhotos"></label>
+                <input asp-for="GalleryPhotos" class="form-control" required>
+                <span asp-validation-for="GalleryPhotos" class="text-danger"></span>
             </div>
             <input type="submit" value="Add Book" class="btn btn-info" />
         </form>

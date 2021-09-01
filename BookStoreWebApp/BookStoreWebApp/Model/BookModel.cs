@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using BookStoreWebApp.Enum;
 using BookStoreWebApp.Helpers;
+using BookStoreWebApp.Model;
 using Microsoft.AspNetCore.Http;
 
 namespace BookStoreWebApp.model
@@ -48,6 +49,12 @@ namespace BookStoreWebApp.model
         [Required]
         public IFormFile CoverPhoto { get; set; }
         public string CoverImageUrl { get; set; }
-      
+
+        [Display(Name = "Choose the gallery photos")]
+        [Required]
+        public IEnumerable<IFormFile> GalleryPhotos { get; set; }
+        
+        public List<GalleryModel> Gallery { get; set; }
+
     }
 }
