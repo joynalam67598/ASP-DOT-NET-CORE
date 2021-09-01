@@ -27,6 +27,7 @@ namespace BookStoreWebApp.Repository
                 TotalPages = bookModel.TotalPages,
                 CreatedOn = DateTime.UtcNow,
                 UpdatedOn = DateTime.UtcNow,
+                CoverImage = bookModel.CoverImageUrl,
 
 
             };
@@ -53,8 +54,9 @@ namespace BookStoreWebApp.Repository
                             LanguageId = book.LanguageId,
                             // Language = book.Language.Name,
                             TotalPages = book.TotalPages,
+                            CoverImageUrl = book.CoverImage,
 
-                        }
+                    }
                     );
                 }
             }
@@ -74,6 +76,7 @@ namespace BookStoreWebApp.Repository
                     LanguageId = book.LanguageId,
                     Language = book.Language.Name,
                     TotalPages = book.TotalPages,
+                    CoverImageUrl = book.CoverImage,
 
                 }).FirstOrDefaultAsync();
         }

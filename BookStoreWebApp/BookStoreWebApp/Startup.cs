@@ -27,7 +27,11 @@ namespace BookStoreWebApp
             services.AddScoped<LanguageRepository, LanguageRepository>();
                 // .\SQLEXPRESS
 #if DEBUG
-            services.AddRazorPages().AddRazorRuntimeCompilation();
+            services.AddRazorPages().AddRazorRuntimeCompilation().AddViewOptions(option =>
+            {
+                option.HtmlHelperOptions.ClientValidationEnabled = false;
+            });
+
 #endif
         }
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

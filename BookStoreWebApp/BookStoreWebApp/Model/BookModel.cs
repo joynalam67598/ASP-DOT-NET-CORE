@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using BookStoreWebApp.Enum;
 using BookStoreWebApp.Helpers;
+using Microsoft.AspNetCore.Http;
 
 namespace BookStoreWebApp.model
 {
@@ -13,30 +14,40 @@ namespace BookStoreWebApp.model
         [DataType(DataType.Date)]
         [Display(Name = "Date")]
         public string MyFiled { get; set; }
+
         public int Id { get; set; }
-        // [Required(ErrorMessage = "Please, enter the title of your book")]
-       // [StringLength(50,MinimumLength = 3)]
-        [MyCustomValidation("mvc")]
+
+        [Required(ErrorMessage = "Please, enter the title of your book")]
+        [StringLength(50,MinimumLength = 3)]
         public string Title { get; set; }
+
         [Required(ErrorMessage = "Please, enter the author name of your book")]
         [StringLength(25, MinimumLength = 3)]
         public string Author { get; set; }
+
         [Required(ErrorMessage = "Please, enter the description of your book")]
         [StringLength(500, MinimumLength = 3)]
         public string Description { get; set; }
+
         public string Category { get; set; }
+
         [Required]
         public int LanguageId { get; set; }
+
         public string Language { get; set; }
 
         [Required(ErrorMessage = "Please, choose the language of your book")]
-        // public List<string> MultiLanguage { get; set; }
         public LanguageEnum LanguageEnum { get; set; }
 
         [Required(ErrorMessage = "Please, enter the total page number of your book")]
-        [Range(100,1000)]
-        [Display(Name = "Total Pages of Book")] // change the label name
+        [Range(10,1000)]
+        [Display(Name = "Total Pages of Book")]
         public int TotalPages { get; set; }
+
+        [Display(Name ="Choose the cover photo")]
+        [Required]
+        public IFormFile CoverPhoto { get; set; }
+        public string CoverImageUrl { get; set; }
       
     }
 }

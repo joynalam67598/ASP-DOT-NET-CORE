@@ -1,10 +1,13 @@
-﻿using BookStoreWebApp.model;
+﻿using System;
+using BookStoreWebApp.model;
 using BookStoreWebApp.Repository;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using BookStoreWebApp.Model;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BookStoreWebApp.Controllers
@@ -13,11 +16,15 @@ namespace BookStoreWebApp.Controllers
     {
         public readonly BookRepository _bookRepository = null;
         public readonly LanguageRepository _languageRepository = null;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public BookController(BookRepository bookRepository,LanguageRepository languageRepository)
+        public BookController(BookRepository bookRepository,
+            LanguageRepository languageRepository,
+            IWebHostEnvironment webHostEnvironment )
         {
             _bookRepository = bookRepository;
             _languageRepository = languageRepository;
+            _webHostEnvironment = webHostEnvironment;
 
         }
 
@@ -50,6 +57,16 @@ namespace BookStoreWebApp.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (bookModel.CoverPhoto != null)
+                {
+                    var folder = "images/book/cover/";
+                    folder += Guid.NewGuid().ToString() + "_" + bookModel.CoverPhoto.FileName;
+                    var serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folder);
+
+                    bookModel.CoverImageUrl = "/"+folder;
+
+                    await bookModel.CoverPhoto.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
+                }
                 var bookId =  _bookRepository.AddNewBook(bookModel);
                 if (bookId > 0)
                 {
