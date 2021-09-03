@@ -50,30 +50,21 @@ namespace BookStoreWebApp.Repository
         }
         public async Task<List<BookModel>> GetAllBooks()
         {
-            var books = new List<BookModel>();
-            var allBooks = await _context.Books.ToListAsync();
-            if (allBooks?.Any() == true)
-            {
-                foreach (var book in allBooks)
+            return await _context.Books
+                .Select(book => new BookModel()
                 {
-                    books.Add(new BookModel()
-                        {
-                            Id = book.Id,
-                            Title = book.Title,
-                            Description = book.Description,
-                            Author = book.Author,
-                            Category = book.Category,
-                            LanguageId = book.LanguageId,
-                            // Language = book.Language.Name,
-                            TotalPages = book.TotalPages,
-                            CoverImageUrl = book.CoverImage,
+                    Id = book.Id,
+                    Title = book.Title,
+                    Description = book.Description,
+                    Author = book.Author,
+                    Category = book.Category,
+                    LanguageId = book.LanguageId,
+                    Language = book.Language.Name,
+                    TotalPages = book.TotalPages,
+                    CoverImageUrl = book.CoverImage,
 
-                    }
-                    );
-                }
-            }
-
-            return books;
+                }).ToListAsync();
+            
         }
         public async Task<BookModel> GetBookById( int id)
         {
@@ -98,6 +89,24 @@ namespace BookStoreWebApp.Repository
                     BookPdfUrl = book.BookPdfUrl,
 
                 }).FirstOrDefaultAsync();
+        }
+
+        public async Task<List<BookModel>> GetTopBookAsync(int count)
+        {
+            return await _context.Books
+                .Select(book => new BookModel()
+                {
+                    Id = book.Id,
+                    Title = book.Title,
+                    Description = book.Description,
+                    Author = book.Author,
+                    Category = book.Category,
+                    LanguageId = book.LanguageId,
+                    Language = book.Language.Name,
+                    TotalPages = book.TotalPages,
+                    CoverImageUrl = book.CoverImage,
+
+                }).Take(count).ToListAsync();
         }
         public List<BookModel> SearchBook(string title, string author)
         {

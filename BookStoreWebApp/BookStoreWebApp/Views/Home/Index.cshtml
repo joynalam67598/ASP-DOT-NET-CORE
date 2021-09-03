@@ -1,41 +1,22 @@
 ﻿@{
-    dynamic data = ViewBag.Data;
     var bookInfo = ViewData["book"] as BookModel;
-    // ViewData["Title"] = "Home";
 }
 <header class="bg-dark py-5">
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
             <h1 class="display-4 fw-bolder">WELCOME TO STORE</h1>
             <p class="lead fw-normal text-white-50 mb-0">HAPPY BOOKING</p>
-            <p class="lead fw-normal text-white-50 mb-0">@data.id and @data.name using dynamic data to view bag</p>
-            <p class="lead fw-normal text-white-50 mb-0">@bookInfo.Id and @bookInfo.Author using key value  view data</p>
-            <p class="lead fw-normal text-white-50 mb-0">@ViewData["ViewDataAttribute"]</p>
         </div>
     </div>
 </header>
 
-<!-- Section-->
 <section class="py-5">
 <div class="container px-4 px-lg-5 mt-5">
     <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-        <div class="col mb-5">
-            @* <partial name="_BookThubmin" model="new BookModel()"/> *@
-            @Html.Partial("_BookThubmin",new BookModel())
-        </div>
-        <div class="col mb-5">
-            @await Html.PartialAsync("_BookThubmin",new BookModel())
-        </div>
-        <div class="col mb-5">
-            @{
-                Html.RenderPartial("_BookThubmin", new BookModel());
-            }
-        </div>
-        <div class="col mb-5">
-            @{
-                await Html.RenderPartialAsync("_BookThubmin", new BookModel());
-            }
-        </div>
+
+        @* @await Component.InvokeAsync("TopBooks"); *@
+        <vc:top-books count="8"></vc:top-books>
+
     </div>
 </div>
 </section>
