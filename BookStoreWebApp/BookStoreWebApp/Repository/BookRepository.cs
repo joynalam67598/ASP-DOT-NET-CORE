@@ -29,6 +29,7 @@ namespace BookStoreWebApp.Repository
                 CreatedOn = DateTime.UtcNow,
                 UpdatedOn = DateTime.UtcNow,
                 CoverImage = bookModel.CoverImageUrl,
+                BookPdfUrl = bookModel.BookPdfUrl,
 
 
             };
@@ -93,7 +94,8 @@ namespace BookStoreWebApp.Repository
                         Id = g.Id,
                         Name = g.Name,
                         Url = g.Url,
-                    }).ToList()
+                    }).ToList(),
+                    BookPdfUrl = book.BookPdfUrl,
 
                 }).FirstOrDefaultAsync();
         }

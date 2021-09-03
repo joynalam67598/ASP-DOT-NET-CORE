@@ -69,7 +69,12 @@
                 <input asp-for="GalleryPhotos" class="form-control" required>
                 <span asp-validation-for="GalleryPhotos" class="text-danger"></span>
             </div>
-            <input type="submit" value="Add Book" class="btn btn-info" />
+            <div>
+                <label asp-for="BookPdf"></label>
+                <input asp-for="BookPdf" class="form-control" required>
+                <span asp-validation-for="BookPdf" class="text-danger"></span>
+            </div>
+            <input type="submit" value="Add Book" class="mt-3 mb-3 btn btn-info form-control" />
         </form>
 
 

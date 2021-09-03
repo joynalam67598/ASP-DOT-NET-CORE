@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Threading.Tasks;
 using BookStoreWebApp.Model;
@@ -62,6 +63,11 @@ namespace BookStoreWebApp.Controllers
                     var folder = "images/book/cover/";
                     bookModel.CoverImageUrl = await UploadImage(folder,bookModel.CoverPhoto);
                 }
+                if (bookModel.BookPdf != null)
+                {
+                    var folder = "file/book/pdf/";
+                    bookModel.BookPdfUrl = await UploadImage(folder, bookModel.BookPdf);
+                }
                 if (bookModel.GalleryPhotos != null)
                 {
                     var folder = "images/book/gallery/";
@@ -96,7 +102,6 @@ namespace BookStoreWebApp.Controllers
             folderPath += Guid.NewGuid().ToString() + "_" + file.FileName;
             var serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folderPath);
             
-
             await file.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
 
             return "/" + folderPath;

@@ -13,6 +13,7 @@ namespace BookStoreWebApp.Data
         public string Description { get; set; }
         public string Category { get; set; }
         public string CoverImage { get; set; }
+        public string BookPdfUrl { get; set; }
         public int LanguageId { get; set; }
         public int TotalPages { get; set; }
         public DateTime? CreatedOn { get; set; }
