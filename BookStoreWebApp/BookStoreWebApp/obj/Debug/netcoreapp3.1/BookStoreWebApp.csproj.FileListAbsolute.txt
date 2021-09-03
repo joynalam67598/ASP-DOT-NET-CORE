@@ -426,3 +426,6 @@ C:\Users\DELL\Desktop\DOT NET\dot net core 04-07-2021\BookStoreWebApp\BookStoreW
 C:\Users\DELL\Desktop\DOT NET\dot net core 04-07-2021\BookStoreWebApp\BookStoreWebApp\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
 C:\Users\DELL\Desktop\DOT NET\dot net core 04-07-2021\BookStoreWebApp\BookStoreWebApp\obj\Debug\netcoreapp3.1\BookStoreWebApp.csproj.AssemblyReference.cache
 C:\Users\DELL\Desktop\DOT NET\dot net core 04-07-2021\BookStoreWebApp\BookStoreWebApp\obj\Debug\netcoreapp3.1\BookStoreWebApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\DELL\Desktop\DOT NET\dot net core 04-07-2021\BookStoreWebApp\BookStoreWebApp\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_BookThubmin.cshtml.g.cs
+C:\Users\DELL\Desktop\DOT NET\dot net core 04-07-2021\BookStoreWebApp\BookStoreWebApp\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Footer.cshtml.g.cs
+C:\Users\DELL\Desktop\DOT NET\dot net core 04-07-2021\BookStoreWebApp\BookStoreWebApp\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Header.cshtml.g.cs

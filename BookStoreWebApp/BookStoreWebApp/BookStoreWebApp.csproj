@@ -22,7 +22,6 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\file\book\pdf\" />
-    <Folder Include="wwwroot\images\book\cover\" />
     <Folder Include="wwwroot\images\book\gallery\" />
   </ItemGroup>
 
