@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using BookStoreWebApp.Controllers;
 using BookStoreWebApp.Data;
 using BookStoreWebApp.Repository;
 using Microsoft.EntityFrameworkCore;
@@ -47,11 +48,20 @@ namespace BookStoreWebApp
 
                 app.UseEndpoints(endpoints =>
                 {
-                    endpoints.MapDefaultControllerRoute();
-                    //endpoints.MapControllerRoute(
-                    //    name: "Default",
-                    //    pattern: "bookapp/{controller = Home}/{action = Index}/{id?}"
-                    //);
+                    endpoints.MapControllers();
+                    // endpoints.MapDefaultControllerRoute();
+                    // endpoints.MapControllerRoute(
+                    //     name: "Default",
+                    //     pattern: "{controller=Home}/{action=Index}/{id?}/{name?}"
+                    //     // default value diye rakle error hoy na
+                    //
+                    // );
+                    // endpoints.MapControllerRoute(
+                    //     name: "AboutUs",
+                    //     pattern: "about-us/{id?}",
+                    //     defaults: new {controllers= "Home", action="AboutUs"}
+                    //
+                    // ); // this conventional Routing
                 });
             }
         }

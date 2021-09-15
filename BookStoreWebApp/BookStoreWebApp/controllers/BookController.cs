@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace BookStoreWebApp.Controllers
 {
+    [Route("[controller]/[action]")]
     public class BookController : Controller
     {
         public readonly BookRepository _bookRepository = null;
@@ -34,7 +35,7 @@ namespace BookStoreWebApp.Controllers
             var allBooks = await _bookRepository.GetAllBooks();
             return View(allBooks);
         }
-        [Route(template: "book-details/{id}",Name = "bookDetailsRoute")]
+        [Route(template: "~/book-details/{id:int?}",Name = "bookDetailsRoute")]
         public async Task<ViewResult> GetBook(int id)
         {
             var bookDetails = await _bookRepository.GetBookById(id);
@@ -60,17 +61,17 @@ namespace BookStoreWebApp.Controllers
             {
                 if (bookModel.CoverPhoto != null)
                 {
-                    var folder = "images/book/cover/";
+                    const string folder = "images/book/cover/";
                     bookModel.CoverImageUrl = await UploadImage(folder,bookModel.CoverPhoto);
                 }
                 if (bookModel.BookPdf != null)
                 {
-                    var folder = "file/book/pdf/";
+                    const string folder = "file/book/pdf/";
                     bookModel.BookPdfUrl = await UploadImage(folder, bookModel.BookPdf);
                 }
                 if (bookModel.GalleryPhotos != null)
                 {
-                    var folder = "images/book/gallery/";
+                    const string folder = "images/book/gallery/";
 
                     bookModel.Gallery = new List<GalleryModel>();
                     
