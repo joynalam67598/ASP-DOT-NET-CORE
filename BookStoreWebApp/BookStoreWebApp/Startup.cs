@@ -13,16 +13,21 @@ using BookStoreWebApp.Controllers;
 using BookStoreWebApp.Data;
 using BookStoreWebApp.Repository;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace BookStoreWebApp
 {
     public class Startup
     {
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+        private readonly IConfiguration _configuration;
+        public Startup(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<BookStoreContext>(options => options.UseSqlServer("Server=.\\SQLExpress; Database=BookStore; Integrated Security=True;"));
+            services.AddDbContext<BookStoreContext>(options => options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
             services.AddControllersWithViews();
 #if DEBUG
             services.AddRazorPages().AddRazorRuntimeCompilation();
@@ -43,20 +48,11 @@ namespace BookStoreWebApp
 
                 app.UseEndpoints(endpoints =>
                 {
-                    endpoints.MapControllers();
-                    // endpoints.MapDefaultControllerRoute();
+                    endpoints.MapDefaultControllerRoute();
                     // endpoints.MapControllerRoute(
                     //     name: "Default",
                     //     pattern: "{controller=Home}/{action=Index}/{id?}/{name?}"
-                    //     // default value diye rakle error hoy na
-                    //
-                    // );
-                    // endpoints.MapControllerRoute(
-                    //     name: "AboutUs",
-                    //     pattern: "about-us/{id?}",
-                    //     defaults: new {controllers= "Home", action="AboutUs"}
-                    //
-                    // ); // this conventional Routing
+                    
                 });
             }
         }

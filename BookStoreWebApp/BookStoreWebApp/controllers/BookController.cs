@@ -13,7 +13,6 @@ using Microsoft.AspNetCore.Http;
 
 namespace BookStoreWebApp.Controllers
 {
-    [Route("[controller]/[action]")]
     public class BookController : Controller
     {
         public readonly IBookRepository _bookRepository = null;

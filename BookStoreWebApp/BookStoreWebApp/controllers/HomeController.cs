@@ -1,22 +1,24 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Dynamic;
 using BookStoreWebApp.model;
+using Microsoft.Extensions.Configuration;
 
 namespace BookStoreWebApp.Controllers
 {
-    [Route("[controller]/[action]")]
     public class HomeController : Controller
     {
-        [Route("~/")]
+        private readonly IConfiguration configuration;
+
+        public HomeController(IConfiguration _configuration)
+        {
+            configuration = _configuration;
+        }
         public ViewResult Index()
         {
+            var result = configuration["AppName"];
+            var key1 = configuration["info:key1"]; // object access korar niom.
             return View();
         }
-
-        // [Route("about-us")]
-        // [Route("about-us")][HttpGet]
-        // [HttpGet("about-us")]
-        // [HttpGet("about-us",Name="about",Order=1)]
 
         public ViewResult AboutUs()
         {

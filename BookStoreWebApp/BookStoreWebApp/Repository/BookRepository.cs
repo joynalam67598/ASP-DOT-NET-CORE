@@ -6,16 +6,19 @@ using System.Threading.Tasks;
 using BookStoreWebApp.Data;
 using BookStoreWebApp.Model;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace BookStoreWebApp.Repository
 {
     public class BookRepository : IBookRepository
     {
         private readonly BookStoreContext  _context = null;
+        private readonly IConfiguration  _configuration;
 
-        public BookRepository(BookStoreContext context)
+        public BookRepository(BookStoreContext context, IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
         }
         public int AddNewBook(BookModel bookModel)
         {
@@ -111,6 +114,11 @@ namespace BookStoreWebApp.Repository
         public List<BookModel> SearchBook(string title, string author)
         {
             return null;
+        }
+
+        public string GetAppName()
+        {
+            return _configuration["AppName"];
         }
         
 
