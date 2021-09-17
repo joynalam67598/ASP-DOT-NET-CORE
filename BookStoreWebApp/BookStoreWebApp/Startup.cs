@@ -24,16 +24,11 @@ namespace BookStoreWebApp
         {
             services.AddDbContext<BookStoreContext>(options => options.UseSqlServer("Server=.\\SQLExpress; Database=BookStore; Integrated Security=True;"));
             services.AddControllersWithViews();
-            services.AddScoped<BookRepository, BookRepository>();
-            services.AddScoped<LanguageRepository, LanguageRepository>();
-                // .\SQLEXPRESS
 #if DEBUG
-            services.AddRazorPages().AddRazorRuntimeCompilation().AddViewOptions(option =>
-            {
-                option.HtmlHelperOptions.ClientValidationEnabled = false;
-            });
-
+            services.AddRazorPages().AddRazorRuntimeCompilation();
 #endif
+            services.AddScoped<IBookRepository, BookRepository>();
+            services.AddScoped<ILanguageRepository, LanguageRepository>();
         }
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
             {

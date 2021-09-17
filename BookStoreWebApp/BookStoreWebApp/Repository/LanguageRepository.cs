@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BookStoreWebApp.Repository
 {
-    public class LanguageRepository
+    public class LanguageRepository : ILanguageRepository
     {
         private readonly BookStoreContext _context = null;
 

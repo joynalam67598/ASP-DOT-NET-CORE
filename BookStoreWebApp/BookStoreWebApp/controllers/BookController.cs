@@ -16,12 +16,12 @@ namespace BookStoreWebApp.Controllers
     [Route("[controller]/[action]")]
     public class BookController : Controller
     {
-        public readonly BookRepository _bookRepository = null;
-        public readonly LanguageRepository _languageRepository = null;
+        public readonly IBookRepository _bookRepository = null;
+        public readonly ILanguageRepository _languageRepository = null;
         private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public BookController(BookRepository bookRepository,
-            LanguageRepository languageRepository,
+        public BookController(IBookRepository bookRepository,
+            ILanguageRepository languageRepository,
             IWebHostEnvironment webHostEnvironment )
         {
             _bookRepository = bookRepository;
@@ -49,7 +49,6 @@ namespace BookStoreWebApp.Controllers
 
         public async Task<ViewResult> AddBook(bool isSuccess=false, int bookId = 0)
         {
-            ViewBag.Language = new SelectList( await _languageRepository.GetLanguages(),"Id","Name");
             ViewBag.isSuccess = isSuccess;
             ViewBag.bookId = bookId;
             return View();
@@ -92,7 +91,6 @@ namespace BookStoreWebApp.Controllers
                 }
 
             }
-            ViewBag.Language = new SelectList(await _languageRepository.GetLanguages(), "Id", "Name");
             ModelState.AddModelError("","This is custom error message");
             return View();
         }

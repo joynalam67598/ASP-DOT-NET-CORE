@@ -10,8 +10,8 @@ namespace BookStoreWebApp.Components
 {
     public class TopBooksViewComponent : ViewComponent
     {
-        public readonly BookRepository _bookRepository;
-        public TopBooksViewComponent(BookRepository bookRepository)
+        public readonly IBookRepository _bookRepository;
+        public TopBooksViewComponent(IBookRepository bookRepository)
         {
             this._bookRepository = bookRepository;
         }

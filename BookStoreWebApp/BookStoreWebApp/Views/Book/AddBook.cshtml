@@ -1,4 +1,5 @@
 ﻿@using BookStoreWebApp.Enum
+@inject BookStoreWebApp.Repository.ILanguageRepository _LanguageRepository
 @model BookModel
 @{
     ViewData["Title"] = "AddBook";
@@ -49,7 +50,7 @@
             </div>
             <div>
                 <label asp-for="LanguageId"></label>
-                <select asp-for="LanguageId" class="form-control" asp-items="Html.GetEnumSelectList<LanguageEnum>()" required>
+                <select asp-for="LanguageId" class="form-control" asp-items="(await  _LanguageRepository.GetLanguages()).Select(x=> new SelectListItem(){Text = x.Name , Value = x.Id.ToString()} )" required>
                     <option value="" selected disabled>Select a language</option>
                 </select>
                 <span asp-validation-for="LanguageId" class="text-danger"></span>
