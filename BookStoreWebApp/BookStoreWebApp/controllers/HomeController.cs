@@ -7,16 +7,16 @@ namespace BookStoreWebApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IConfiguration configuration;
+        private readonly IConfiguration _configuration;
 
-        public HomeController(IConfiguration _configuration)
+        public HomeController(IConfiguration configuration)
         {
-            configuration = _configuration;
+            _configuration = configuration;
         }
         public ViewResult Index()
         {
-            var result = configuration["AppName"];
-            var key1 = configuration["info:key1"]; // object access korar niom.
+            var result = _configuration["AppName"];
+            var key1 = _configuration["info:key1"]; // object access korar niom.
             return View();
         }
 

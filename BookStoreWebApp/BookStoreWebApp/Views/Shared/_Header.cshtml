@@ -1,6 +1,12 @@
 ﻿@using Microsoft.Extensions.Configuration
+@using BookStoreWebApp.Model
 @* @inject BookStoreWebApp.Repository.IBookRepository _bookRepository *@
 @inject IConfiguration _configuration
+@{
+    // var newBook = _configuration.GetSection("BookAlert");   //section
+    var newAlert = new BookAlertConfig();
+    _configuration.Bind("BookAlert", newAlert);
+}
 
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -55,10 +61,12 @@
             </div>
         </div>
     </nav>
-    @if (_configuration.GetValue<bool>("NoteBookAlert:DisplayAlert"))
+    @* @if (newBook.GetValue<bool>("DisplayAlert")) //section *@
+    @if (newAlert.DisplayAlert)
     {
         <div class="alert alert-info">
-            @(_configuration.GetValue<string>("NoteBookAlert:AlertMessage"))
+            @* @(newBook.GetValue<string>("AlertMessage")) // section*@
+            @(newAlert.AlertMessage)
         </div>
 
     }
