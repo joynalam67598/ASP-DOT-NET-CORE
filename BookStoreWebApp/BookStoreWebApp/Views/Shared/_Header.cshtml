@@ -1,5 +1,7 @@
-﻿@* @inject BookStoreWebApp.Repository.IBookRepository _bookRepository *@
-@inject Microsoft.Extensions.Configuration.IConfiguration _configuration
+﻿@using Microsoft.Extensions.Configuration
+@* @inject BookStoreWebApp.Repository.IBookRepository _bookRepository *@
+@inject IConfiguration _configuration
+
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container px-4 px-lg-5">
@@ -53,4 +55,12 @@
             </div>
         </div>
     </nav>
+    @if (_configuration.GetValue<bool>("NoteBookAlert:DisplayAlert"))
+    {
+        <div class="alert alert-info">
+            @(_configuration.GetValue<string>("NoteBookAlert:AlertMessage"))
+        </div>
+
+    }
+    
 </header>
