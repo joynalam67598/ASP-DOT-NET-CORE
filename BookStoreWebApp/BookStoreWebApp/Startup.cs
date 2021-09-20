@@ -35,6 +35,7 @@ namespace BookStoreWebApp
 #endif
             services.AddScoped<IBookRepository, BookRepository>();
             services.AddScoped<ILanguageRepository, LanguageRepository>();
+            services.AddSingleton<IMessageRepository, MessageRepository>();
 
             services.Configure<BookAlertConfig>(_configuration.GetSection("BookAlert"));
         }
