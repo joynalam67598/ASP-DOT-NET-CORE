@@ -23,7 +23,7 @@ namespace BookStoreWebApp.Repository
         }
         public string GetName()
         {
-            return _newBookAlertConfig.CurrentValue.AlertMessage;
+            return _newBookAlertConfig.CurrentValue.AppName;
         }
     }
 }

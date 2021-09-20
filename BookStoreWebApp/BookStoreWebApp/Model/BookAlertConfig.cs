@@ -9,5 +9,6 @@ namespace BookStoreWebApp.Model
     {
         public string AlertMessage { get; set; }
         public bool DisplayAlert { get; set; }
+        public string AppName { get; set; }
     }
 }

@@ -13,6 +13,7 @@ using BookStoreWebApp.Controllers;
 using BookStoreWebApp.Data;
 using BookStoreWebApp.Model;
 using BookStoreWebApp.Repository;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -29,6 +30,7 @@ namespace BookStoreWebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<BookStoreContext>(options => options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
+            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<BookStoreContext>();
             services.AddControllersWithViews();
 #if DEBUG
             services.AddRazorPages().AddRazorRuntimeCompilation();
@@ -49,6 +51,7 @@ namespace BookStoreWebApp
                 app.UseStaticFiles();
 
                 app.UseRouting();
+                app.UseAuthentication();
 
                 app.UseEndpoints(endpoints =>
                 {
