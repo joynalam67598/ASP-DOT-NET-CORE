@@ -11,6 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BookStoreWebApp.Controllers;
 using BookStoreWebApp.Data;
+using BookStoreWebApp.Model;
 using BookStoreWebApp.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -34,6 +35,8 @@ namespace BookStoreWebApp
 #endif
             services.AddScoped<IBookRepository, BookRepository>();
             services.AddScoped<ILanguageRepository, LanguageRepository>();
+
+            services.Configure<BookAlertConfig>(_configuration.GetSection("BookAlert"));
         }
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
             {

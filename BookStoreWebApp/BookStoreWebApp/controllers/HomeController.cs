@@ -1,22 +1,26 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Dynamic;
 using BookStoreWebApp.model;
+using BookStoreWebApp.Model;
+using Microsoft.CodeAnalysis.Options;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 
 namespace BookStoreWebApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IConfiguration _configuration;
+        private readonly BookAlertConfig _bookAlertConfiguration;
 
-        public HomeController(IConfiguration configuration)
+        public HomeController(IOptions<BookAlertConfig> bookAlertConfiguration)
         {
-            _configuration = configuration;
+            _bookAlertConfiguration = bookAlertConfiguration.Value;
         }
         public ViewResult Index()
         {
-            var result = _configuration["AppName"];
-            var key1 = _configuration["info:key1"]; // object access korar niom.
+            bool isDisplay = _bookAlertConfiguration.DisplayAlert;
+
+            
             return View();
         }
 

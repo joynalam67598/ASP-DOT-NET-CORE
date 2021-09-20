@@ -7,5 +7,7 @@ namespace BookStoreWebApp.Model
 {
     public class BookAlertConfig
     {
+        public string AlertMessage { get; set; }
+        public bool DisplayAlert { get; set; }
     }
 }
