@@ -32,6 +32,19 @@ namespace BookStoreWebApp
             services.AddDbContext<BookStoreContext>(options => options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
             services.AddIdentity<ApplicationUserModel, IdentityRole>().AddEntityFrameworkStores<BookStoreContext>();
             services.AddControllersWithViews();
+
+
+            services.Configure<IdentityOptions>(option =>
+            {
+                option.Password.RequireDigit = false;
+                option.Password.RequiredLength = 5;
+                option.Password.RequireLowercase = false;
+                option.Password.RequireNonAlphanumeric = false;
+                option.Password.RequireUppercase = false;
+                option.Password.RequiredUniqueChars = 1;
+
+
+            });
 #if DEBUG
             services.AddRazorPages().AddRazorRuntimeCompilation();
 #endif
