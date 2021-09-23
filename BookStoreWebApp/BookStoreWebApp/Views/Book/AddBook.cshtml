@@ -1,0 +1,88 @@
+﻿@using BookStoreWebApp.Enum
+@inject BookStoreWebApp.Repository.ILanguageRepository _LanguageRepository
+@model BookModel
+@{
+    ViewData["Title"] = "AddBook";
+}
+<div class="container">
+    <div class="col-sm-8">
+        @* <big>Add Book</big> *@
+        <p big>Add Book</p>
+        <hr/>
+        @if (ViewBag.isSuccess == true)
+        {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Congratulations!</strong> You have added new book successfully.<br/>
+                Click <a asp-controller="Book" asp-action="GetBook" asp-route-id ="@ViewBag.bookId">here</a> to view the details.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+        }
+        
+        <button class="btn btn-primary" type="button" disabled id="myLoader" style="display: none">
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Loading...
+        </button>
+        
+        <form method="post" enctype="multipart/form-data" asp-controller="Book" asp-action="AddBook">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="MyFiled"></label>
+                <input asp-for="MyFiled" class="form-control" required />
+                <span asp-validation-for="MyFiled" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Title"></label>
+                <input asp-for="Title" class="form-control" required />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="Author"></label>
+                <input asp-for="Author" class="form-control" required />
+                <span asp-validation-for="Author" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="Description"></label>
+                <textarea asp-for="Description" class="form-control" required></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="LanguageId"></label>
+                <select asp-for="LanguageId" class="form-control" asp-items="(await  _LanguageRepository.GetLanguages()).Select(x=> new SelectListItem(){Text = x.Name , Value = x.Id.ToString()} )" required>
+                    <option value="" selected disabled>Select a language</option>
+                </select>
+                <span asp-validation-for="LanguageId" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="TotalPages"></label>
+                <input asp-for="TotalPages" class="form-control" required />
+                <span asp-validation-for="TotalPages" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="CoverPhoto"></label>
+                <input asp-for="CoverPhoto" class="form-control" required>
+                <span asp-validation-for="CoverPhoto" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="GalleryPhotos"></label>
+                <input asp-for="GalleryPhotos" class="form-control" required>
+                <span asp-validation-for="GalleryPhotos" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="BookPdf"></label>
+                <input asp-for="BookPdf" class="form-control" required>
+                <span asp-validation-for="BookPdf" class="text-danger"></span>
+            </div>
+            <input type="submit" value="Add Book" class="mt-3 mb-3 btn btn-info form-control" />
+        </form>
+
+
+    </div>
+</div>
+@section script {
+    
+}
+
+

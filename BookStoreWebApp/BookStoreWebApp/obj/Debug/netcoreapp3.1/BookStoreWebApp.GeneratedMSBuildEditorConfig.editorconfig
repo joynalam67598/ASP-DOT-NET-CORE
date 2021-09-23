@@ -1,0 +1,10 @@
+is_global = true
+build_property.TargetFramework = netcoreapp3.1
+build_property.TargetPlatformMinVersion = 7.0
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.PublishSingleFile = 
+build_property.IncludeAllContentForSelfExtract = 
+build_property._SupportedPlatformList = Android,iOS,Linux,macOS,Windows
+build_property.RootNamespace = BookStoreWebApp
+build_property.ProjectDir = C:\Users\DELL\Desktop\DOT NET\dot net core 04-07-2021\BookStoreWebApp\BookStoreWebApp\

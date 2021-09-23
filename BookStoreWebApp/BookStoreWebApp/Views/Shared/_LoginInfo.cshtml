@@ -1,0 +1,36 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using BookStoreWebApp.Model
+@inject SignInManager<ApplicationUserModel> _signInManager
+
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+        @if (_signInManager.IsSignedIn(User))
+        {
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarBookDropdown" role="button"
+               data-bs-toggle="dropdown" aria-expanded="false">@User.Identity.Name</a>
+            <ul class="dropdown-menu" aria-labelledby="navbarBookDropdown">
+                <li>
+                    <a class="dropdown-item" asp-controller="Account" asp-action="SignOut">
+                        SignOut
+                    </a>
+                </li>
+
+            </ul>
+        </li>
+        }
+        else
+        {
+        <li class="nav-item">
+            <a class="nav-link btn btn-outline-info" asp-controller="Account" asp-action="SignIn" asp-route-returnUrl="@Context.Request.Path">
+                Login
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link btn btn-outline-info" asp-controller="Account" asp-action="SignUp">
+                Register
+            </a>
+        </li>
+
+        }
+
+    </ul>

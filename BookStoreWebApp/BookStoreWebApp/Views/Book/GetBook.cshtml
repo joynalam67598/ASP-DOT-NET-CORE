@@ -1,0 +1,113 @@
+﻿@using Microsoft.AspNetCore.Razor.Language.Extensions
+@model BookModel
+@*comment kore dile dynamic view hoy jabe.*@
+@{
+    ViewData["Title"] = "Book Details - " + Model.Title;
+}
+
+<div class="container">
+    <h3 class="display-4">Book Details</h3>
+    <div class="row">
+        <div class="col-sm-6">
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    @for (int i = 0; i < Model.Gallery.Count(); i++)
+                    {
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="@i" class= "@(i==0 ? "active" : "")" aria-current="true" aria-label="Slide 1"></button>
+                    }
+                </div>
+
+                <div class="carousel-inner">
+                    
+                    @for (int i = 0; i < Model.Gallery.Count(); i++)
+                    {
+                        <div class="carousel-item @(i==0 ? "active" : "")">
+                            <img src="@Model.Gallery[i].Url" asp-append-version="true" class="d-block w-100 h-100" alt="@Model.Gallery[i].Name">
+                        </div>
+                    }
+
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>@Model.Title</h1>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 text-primary">
+                    <span class="label label-primary">By: </span>
+                    <span class="monospaced">@Model.Author</span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="description">
+                        @Model.Description
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-outline-primary">
+                        Read now
+                    </button>
+                </div>
+            </div>
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">@Model.Title</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            @* <embed src="@Model.BookPdfUrl" class="w-100" height="300" /> *@
+                            <iframe src="@Model.BookPdfUrl" class="w-100" height="300"></iframe>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr />
+
+            <ul class="list-group">
+                <li class="list-group-item"><span class="font-weight-bold">Category - </span> @Model.Category</li>
+                <li class="list-group-item"><span class="font-weight-bold">Total pages - </span> @Model.TotalPages</li>
+                <li class="list-group-item"><span class="font-weight-bold">Language Id - </span> @Model.Language</li>
+            </ul>
+        </div>
+    </div>
+
+   
+    
+
+    <div class="container px-4 px-lg-5 mt-5" id="similarBook">
+        <h1>Similar Books</h1>
+        <hr />
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            
+            <vc:top-books count="4"></vc:top-books>
+        </div>
+    </div>
+</div>
+
+
+
