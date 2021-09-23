@@ -39,22 +39,19 @@
                         </ul>
                     </li>
                 </ul>
+
                 <div>
                     <i class="bi-cart-fill me-1 bg-light"></i>
                     Cart
                     <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
                 </div>
-                <button class="btn btn-success ml-2 mr-2" type="submit">
-                    Login
-                    <span class="badge bg-dark text-white ms-1 rounded-pill"></span>
-                </button>
-                <a class="btn btn-info " asp-controller="Account" asp-action="SignUp">
-                    Register
-                    <span class="badge bg-dark text-white ms-1 rounded-pill"></span>
-                </a>
+                <div>
+                    <partial name="_LoginInfo" />
+                </div>
 
+
+                </div>
             </div>
-        </div>
     </nav>
     @* @if (newBook.GetValue<bool>("DisplayAlert")) //section *@
     @if (_configuration.Value.DisplayAlert)
