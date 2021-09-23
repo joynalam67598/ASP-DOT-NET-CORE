@@ -9,10 +9,12 @@ using System.Drawing;
 using System.IO;
 using System.Threading.Tasks;
 using BookStoreWebApp.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 
 namespace BookStoreWebApp.Controllers
 {
+    [Authorize]
     public class BookController : Controller
     {
         public readonly IBookRepository _bookRepository = null;

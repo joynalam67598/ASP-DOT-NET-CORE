@@ -51,13 +51,17 @@ namespace BookStoreWebApp.Controllers
         }
         [Route("signIn")]
         [HttpPost]
-        public async Task<IActionResult> SignIn(SignInModel signInModel)
+        public async Task<IActionResult> SignIn(SignInModel signInModel, string returnUrl)
         {
             if (ModelState.IsValid)
             {
                 var result = await _accountRepository.PasswordSignInAsync(signInModel);
                 if (result.Succeeded)
                 {
+                    if (!string.IsNullOrEmpty(returnUrl))
+                    {
+                        return LocalRedirect(returnUrl);
+                    }
                     return RedirectToAction("Index", "Home");
                 }
                 ModelState.AddModelError("","Invalid Credentials");
@@ -65,7 +69,7 @@ namespace BookStoreWebApp.Controllers
             return View(signInModel);
         }
         
-        [Route("logout")]
+        [Route("signOut")]
         public async Task<IActionResult> SignOut()
         {
             await _accountRepository.SignOutAsync();

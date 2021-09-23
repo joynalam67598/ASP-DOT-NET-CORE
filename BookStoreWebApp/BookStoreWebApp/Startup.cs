@@ -45,6 +45,10 @@ namespace BookStoreWebApp
 
 
             });
+            services.ConfigureApplicationCookie(config =>
+            {
+                config.LoginPath = _configuration["Application:LoginPath"];
+            });
 #if DEBUG
             services.AddRazorPages().AddRazorRuntimeCompilation();
 #endif
@@ -66,6 +70,7 @@ namespace BookStoreWebApp
 
                 app.UseRouting();
                 app.UseAuthentication();
+                app.UseAuthorization();
 
                 app.UseEndpoints(endpoints =>
                 {
