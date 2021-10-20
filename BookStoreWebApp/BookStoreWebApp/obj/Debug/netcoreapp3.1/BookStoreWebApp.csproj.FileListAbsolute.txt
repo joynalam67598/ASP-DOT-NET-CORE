@@ -435,3 +435,4 @@ C:\Users\DELL\Desktop\DOT NET\dot net core 04-07-2021\BookStoreWebApp\BookStoreW
 C:\Users\DELL\Desktop\DOT NET\dot net core 04-07-2021\BookStoreWebApp\BookStoreWebApp\obj\Debug\netcoreapp3.1\Razor\Views\Account\SignUp.cshtml.g.cs
 C:\Users\DELL\Desktop\DOT NET\dot net core 04-07-2021\BookStoreWebApp\BookStoreWebApp\obj\Debug\netcoreapp3.1\Razor\Views\Account\SignIn.cshtml.g.cs
 C:\Users\DELL\Desktop\DOT NET\dot net core 04-07-2021\BookStoreWebApp\BookStoreWebApp\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LoginInfo.cshtml.g.cs
+C:\Users\DELL\Desktop\DOT NET\dot net core 04-07-2021\BookStoreWebApp\BookStoreWebApp\obj\Debug\netcoreapp3.1\Razor\Views\Account\ChangePassword.cshtml.g.cs
