@@ -7,7 +7,7 @@
         {
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" id="navbarBookDropdown" role="button"
-               data-bs-toggle="dropdown" aria-expanded="false">@User.Identity.Name</a>
+               data-bs-toggle="dropdown" aria-expanded="false">@(User.FindFirst("UserFirstName").Value + " " + User.FindFirst("UserLastName").Value)</a>
             <ul class="dropdown-menu" aria-labelledby="navbarBookDropdown">
                 <li>
                     <a class="dropdown-item" asp-controller="Account" asp-action="SignOut">
