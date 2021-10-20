@@ -17,6 +17,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using BookStoreWebApp.Helpers;
+using BookStoreWebApp.Services;
 
 namespace BookStoreWebApp
 {
@@ -57,7 +58,8 @@ namespace BookStoreWebApp
             services.AddScoped<ILanguageRepository, LanguageRepository>();
             services.AddSingleton<IMessageRepository, MessageRepository>();
             services.AddScoped<IAccountRepository, AccountRepository>();
-            services.AddScoped<IUserClaimsPrincipalFactory<ApplicationUserModel>, ApplicationUserClaimsPrincipalFectory>(); 
+            services.AddScoped<IUserClaimsPrincipalFactory<ApplicationUserModel>, ApplicationUserClaimsPrincipalFectory>();
+            services.AddScoped<IUserService, UserService>();
 
             services.Configure<BookAlertConfig>(_configuration.GetSection("BookAlert"));
         }
