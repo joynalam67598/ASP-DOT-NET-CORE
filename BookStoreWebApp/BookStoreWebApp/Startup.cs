@@ -60,7 +60,9 @@ namespace BookStoreWebApp
             services.AddScoped<IAccountRepository, AccountRepository>();
             services.AddScoped<IUserClaimsPrincipalFactory<ApplicationUserModel>, ApplicationUserClaimsPrincipalFectory>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IEmailService, EmailService>();
 
+            services.Configure<SMTPConfigModel>(_configuration.GetSection("SMTPConfig"));
             services.Configure<BookAlertConfig>(_configuration.GetSection("BookAlert"));
         }
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

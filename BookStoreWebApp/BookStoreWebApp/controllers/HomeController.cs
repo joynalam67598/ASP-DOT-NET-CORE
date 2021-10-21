@@ -7,6 +7,8 @@ using Microsoft.CodeAnalysis.Options;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using BookStoreWebApp.Services;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace BookStoreWebApp.Controllers
 {
@@ -16,20 +18,34 @@ namespace BookStoreWebApp.Controllers
         private readonly IMessageRepository _messageRepository;
         private readonly IUserService _userService;
 
+        private readonly IEmailService _emailService;
+
         public HomeController(IOptionsSnapshot<BookAlertConfig> bookAlertConfiguration, 
-            IMessageRepository messageRepository, IUserService userService)
+            IMessageRepository messageRepository, IUserService userService, IEmailService emailService)
         {
             _bookAlertConfiguration = bookAlertConfiguration.Value;
             _messageRepository = messageRepository;
             _userService = userService;
+            _emailService = emailService;
         }
-        public ViewResult Index()
+        public async Task<ViewResult> Index()
         {
-            var userId = _userService.GetUserID();
-            var isLoggedIn = _userService.IsAuthenticated();
+            UserEmailOptions emailOptions = new UserEmailOptions
+            {
+                ToEmails = new List<string>() { "test@gmail.com" }, //fake smtp credentials
+                PlaceHolders = new List<KeyValuePair<string, string>>()
+                {
+                    new KeyValuePair<string, string>("{{UserName}}","Microsoft"),
+                }
+            };
 
-            bool isDisplay = _bookAlertConfiguration.DisplayAlert;
-            var value = _messageRepository.GetName();
+             await _emailService.SendTestEmail(emailOptions);
+
+            //var userId = _userService.GetUserID();
+            //var isLoggedIn = _userService.IsAuthenticated();
+
+            //bool isDisplay = _bookAlertConfiguration.DisplayAlert;
+            //var value = _messageRepository.GetName();
 
             
             return View();
