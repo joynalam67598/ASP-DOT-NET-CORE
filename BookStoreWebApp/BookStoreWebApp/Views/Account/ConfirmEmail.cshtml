@@ -1,4 +1,4 @@
-﻿
+﻿@model BookStoreWebApp.Model.EmailConfirmationModel;
 @{
     ViewData["Title"] = "ConfirmEmail";
 }
@@ -6,14 +6,43 @@
 <div class="container">
     <div class="row text-center">
         <div class="col-md-4">
-            @if(ViewBag.isSucceeded == true){
-            <div class="alert alert-success" role="alert">
-                <p>Congrats, your email is verified!</p>
-            </div>
-            }else{
-            <div class="alert alert-warning" role="alert">
-                <p>Opps! Something went wrong or your token is expired.</p>
-            </div>
+            @if (Model.EmailVerified == true)
+            {
+                <div class="alert alert-success" role="alert">
+                    <p>Congrats, your email is verified!</p>
+                </div>
+            }
+            else
+            {
+                if (Model.EmailSent)
+                {
+                    <div class="alert alert-info" role="alert">
+                        <p>An email sent to you registered email id.</p>
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-info" role="alert">
+                        <p> We have sent an email to your registred email id, Click on the link to login. </p>
+                    </div>
+                }
+
+                    <form asp-action="ConfirmEmail">
+                        <div asp-validation-summary="ModelOnly" class="text-danger">
+                        </div>
+                        <input type="hidden" asp-for="Email"/>
+
+                        <p>Did not get any email or deleted by mistake?</p>
+                        <div class="form-group">
+                            <input type="submit" value="Resend varification email" class="btn btn-primary"/>
+                        </div>
+
+                    </form>
+
+                
+                @*<div class="alert alert-warning" role="alert">
+                    <p>Opps! Something went wrong or your token is expired.</p>
+                </div>*@
             }
 
         </div>

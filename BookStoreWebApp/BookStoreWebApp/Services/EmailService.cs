@@ -64,13 +64,13 @@ namespace BookStoreWebApp.Services
             await smtpClient.SendMailAsync(mail);
         }
 
-        private string GetEmailBody(string templateName)
+        private static string GetEmailBody(string templateName)
         {
             var body = File.ReadAllText(string.Format(templatePath, templateName));
             return body;
         }
 
-        private string UpdatePlaceHolders(string text, List<KeyValuePair<string,string>> keyValuePairs)
+        private static string UpdatePlaceHolders(string text, List<KeyValuePair<string,string>> keyValuePairs)
         {
             if (!string.IsNullOrEmpty(text) && keyValuePairs != null)
             {

@@ -28,7 +28,7 @@ namespace BookStoreWebApp.Controllers
             _userService = userService;
             _emailService = emailService;
         }
-        public async Task<ViewResult> Index()
+        public ViewResult Index()
         {
             //UserEmailOptions emailOptions = new UserEmailOptions
             //{
@@ -47,7 +47,7 @@ namespace BookStoreWebApp.Controllers
             //bool isDisplay = _bookAlertConfiguration.DisplayAlert;
             //var value = _messageRepository.GetName();
 
-            
+
             return View();
         }
 

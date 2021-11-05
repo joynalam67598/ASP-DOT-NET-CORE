@@ -38,6 +38,7 @@ namespace BookStoreWebApp.Controllers
                     }
                 }
                 else ModelState.Clear();
+                return RedirectToAction("ConfirmEmail", new { email = userModel.Email });
             }
             return View();
 
@@ -107,19 +108,46 @@ namespace BookStoreWebApp.Controllers
         }
 
         [HttpGet("confirm-email")]
-        public async Task<IActionResult> ConfirmEmail(string uid, string token)
+        public async Task<IActionResult> ConfirmEmail(string uid, string token, string email)
         {
-            
-            if(!string.IsNullOrEmpty(uid) && !string.IsNullOrEmpty(token))
+            EmailConfirmationModel emailConfirmationModel = new EmailConfirmationModel
+            {
+                Email = email,
+            };
+            if (!string.IsNullOrEmpty(uid) && !string.IsNullOrEmpty(token))
             {
                 token = token.Replace(' ', '+');
                 var result = await _accountRepository.ConfirmEmailAsync(uid, token);
                 if (result.Succeeded)
                 {
-                    ViewBag.isSucceeded = true;
+                    emailConfirmationModel.EmailVerified = true;
                 }
             }
-            return View();
+            return View(emailConfirmationModel);
+        }
+
+        [HttpPost("confirm-email")]
+        public async Task<IActionResult> ConfirmEmail(EmailConfirmationModel emailConfirmationModel)
+        {
+            var user = await _accountRepository.GetuserByEmailAsync(emailConfirmationModel.Email);
+            if (user != null)
+            {
+                if (user.EmailConfirmed)
+                {
+                    emailConfirmationModel.IsConfirmed = true;
+                    return View(emailConfirmationModel);
+                }
+
+                await _accountRepository.GenerateEmailConfirmationTokenAsync(user);
+                emailConfirmationModel.EmailSent = true;
+                ModelState.Clear();
+
+            }
+            else
+            {
+                ModelState.AddModelError("", "Opps! Something went wrong.");
+            }
+            return View(emailConfirmationModel);
         }
 
 

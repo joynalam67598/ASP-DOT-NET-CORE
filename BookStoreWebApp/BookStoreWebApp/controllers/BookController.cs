@@ -48,7 +48,7 @@ namespace BookStoreWebApp.Controllers
             return _bookRepository.SearchBook(bookName, authorName);
         }
 
-        public async Task<ViewResult> AddBook(bool isSuccess=false, int bookId = 0)
+        public ViewResult AddBook(bool isSuccess = false, int bookId = 0)
         {
             ViewBag.isSuccess = isSuccess;
             ViewBag.bookId = bookId;
@@ -88,7 +88,7 @@ namespace BookStoreWebApp.Controllers
                 var bookId =  _bookRepository.AddNewBook(bookModel);
                 if (bookId > 0)
                 {
-                    return RedirectToAction(nameof(AddBook), new { isSuccess = true, bookId = bookId });
+                    return RedirectToAction(nameof(AddBook), new { isSuccess = true, bookId });
                 }
 
             }
