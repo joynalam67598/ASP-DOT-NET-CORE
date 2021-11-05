@@ -47,6 +47,7 @@ namespace BookStoreWebApp.Repository
             }
            return result;
         }
+
         public async Task<SignInResult> PasswordSignInAsync(SignInModel signInModel)
         {
             // perameter username, pass, cookie -> stay login or not , number of stamp to lock the account
@@ -67,9 +68,15 @@ namespace BookStoreWebApp.Repository
 
         }
 
-        private async Task SendEmailConfirmationEmail(ApplicationUserModel user, string token)
+        public async Task<IdentityResult> ConfirmEmailAsync(string uid, string token)
         {
-            string appDomain = _configuration.GetSection("Appliction:AppDomain").Value;
+           return await _userManager.ConfirmEmailAsync(await _userManager.FindByIdAsync(uid),token);
+
+        }
+
+        private async Task SendConfirmationEmail(ApplicationUserModel user, string token)
+        {
+            string appDomain = _configuration.GetSection("Application:AppDomain").Value;
             string configurationLink = _configuration.GetSection("Application:EmailConfirmation").Value;
 
 
@@ -82,7 +89,7 @@ namespace BookStoreWebApp.Repository
                      new KeyValuePair<string, string>("{{link}}", string.Format(appDomain + configurationLink, user.Id, token)),
                 }
             };
-            await _emailService.SendConfirmationEmail(emailOptions);
+            await _emailService.SendEamilForConfirmationEmail(emailOptions);
 
 
         }

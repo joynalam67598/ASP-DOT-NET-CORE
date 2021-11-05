@@ -25,7 +25,7 @@ namespace BookStoreWebApp.Services
             await SendEmail(userEmailOptions);
         }
 
-        public async Task SendConfirmationEmail(UserEmailOptions userEmailOptions)
+        public async Task SendEamilForConfirmationEmail(UserEmailOptions userEmailOptions)
         {
             userEmailOptions.Subject = UpdatePlaceHolders("Hello {{UserName}}, Please confirm your email Id.", userEmailOptions.PlaceHolders);
             userEmailOptions.Body = UpdatePlaceHolders(GetEmailBody("ConfirmationEmail"), userEmailOptions.PlaceHolders);
