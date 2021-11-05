@@ -31,8 +31,12 @@ namespace BookStoreWebApp
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<BookStoreContext>(options => options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
-            services.AddIdentity<ApplicationUserModel, IdentityRole>().AddEntityFrameworkStores<BookStoreContext>();
+            services.AddDbContext<BookStoreContext>(options => 
+                options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddIdentity<ApplicationUserModel, IdentityRole>().
+                AddEntityFrameworkStores<BookStoreContext>().AddDefaultTokenProviders();
+
             services.AddControllersWithViews();
 
 
@@ -44,6 +48,7 @@ namespace BookStoreWebApp
                 option.Password.RequireNonAlphanumeric = false;
                 option.Password.RequireUppercase = false;
                 option.Password.RequiredUniqueChars = 1;
+                option.SignIn.RequireConfirmedEmail = true;
 
 
             });

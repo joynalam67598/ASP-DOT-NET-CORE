@@ -30,16 +30,16 @@ namespace BookStoreWebApp.Controllers
         }
         public async Task<ViewResult> Index()
         {
-            UserEmailOptions emailOptions = new UserEmailOptions
-            {
-                ToEmails = new List<string>() { "test@gmail.com" }, //fake smtp credentials
-                PlaceHolders = new List<KeyValuePair<string, string>>()
-                {
-                    new KeyValuePair<string, string>("{{UserName}}","Microsoft"),
-                }
-            };
+            //UserEmailOptions emailOptions = new UserEmailOptions
+            //{
+            //    ToEmails = new List<string>() { "test@gmail.com" }, //fake smtp credentials
+            //    PlaceHolders = new List<KeyValuePair<string, string>>()
+            //    {
+            //        new KeyValuePair<string, string>("{{UserName}}","Microsoft"),
+            //    }
+            //};
 
-             await _emailService.SendTestEmail(emailOptions);
+            // await _emailService.SendTestEmail(emailOptions);
 
             //var userId = _userService.GetUserID();
             //var isLoggedIn = _userService.IsAuthenticated();
