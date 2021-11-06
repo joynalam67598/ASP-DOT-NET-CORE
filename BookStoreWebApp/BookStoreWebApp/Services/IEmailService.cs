@@ -7,5 +7,7 @@ namespace BookStoreWebApp.Services
     {
         Task SendTestEmail(UserEmailOptions userEmailOptions);
         Task SendEamilForConfirmationEmail(UserEmailOptions userEmailOptions);
+
+        Task SendEamilForForgotPassword(UserEmailOptions userEmailOptions);
     }
 }

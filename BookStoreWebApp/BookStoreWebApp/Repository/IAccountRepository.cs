@@ -15,5 +15,8 @@ namespace BookStoreWebApp.Repository
 
         Task GenerateEmailConfirmationTokenAsync(ApplicationUserModel user);
         Task<ApplicationUserModel> GetuserByEmailAsync(string email);
+        Task GenerateForgotPasswordTokenAsync(ApplicationUserModel user);
+
+        Task<IdentityResult> ResetPasswordAsync(ResetPasswordModel model);
     }
 }

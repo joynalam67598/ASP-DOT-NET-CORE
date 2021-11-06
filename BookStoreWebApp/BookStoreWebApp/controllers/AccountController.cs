@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using BookStoreWebApp.Model;
 using BookStoreWebApp.Repository;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BookStoreWebApp.Controllers
 {
@@ -149,6 +150,64 @@ namespace BookStoreWebApp.Controllers
             }
             return View(emailConfirmationModel);
         }
+
+        [AllowAnonymous, HttpGet("forgot-password")]
+        public IActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        [AllowAnonymous, HttpPost("forgot-password")]
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordModel forgotPasswordModel)
+        {
+            var user = await _accountRepository.GetuserByEmailAsync(forgotPasswordModel.Email);
+            if (user != null)
+            {
+                await _accountRepository.GenerateForgotPasswordTokenAsync(user);
+            }
+            ModelState.Clear();
+            forgotPasswordModel.EmailSent = true;
+
+            return View(forgotPasswordModel);
+        }
+
+        [AllowAnonymous, HttpGet("reset-password")]
+        public IActionResult ResetPassword(string uid, string token)
+        {
+            ResetPasswordModel model = new ResetPasswordModel
+            {
+                UserId = uid,
+                Token = token,
+            };
+            return View(model);
+        }
+
+        [AllowAnonymous, HttpPost("reset-password")]
+        public async Task<IActionResult> ResetPassword(ResetPasswordModel resetPasswordModel)
+        {
+            if(ModelState.IsValid)
+            {
+                resetPasswordModel.Token = resetPasswordModel.Token.Replace(' ', '+');
+
+                var result = await _accountRepository.ResetPasswordAsync(resetPasswordModel);
+                if(result.Succeeded)
+                {
+
+                    ModelState.Clear();
+                    resetPasswordModel.IsSuccess = true;
+                    return View(resetPasswordModel);
+
+                }
+                foreach(var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+
+            }
+
+            return View(resetPasswordModel);
+        }
+
 
 
     }
