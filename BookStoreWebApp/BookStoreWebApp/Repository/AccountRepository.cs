@@ -13,19 +13,22 @@ namespace BookStoreWebApp.Repository
     {
         private readonly UserManager<ApplicationUserModel> _userManager;
         private readonly SignInManager<ApplicationUserModel> _signInManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IUserService _userService;
         private readonly IEmailService _emailService;
         private readonly IConfiguration _configuration;
 
         public AccountRepository(UserManager<ApplicationUserModel> userManager, 
             SignInManager<ApplicationUserModel> signInManager,
-            IUserService userService, IEmailService emailService, IConfiguration configuration )
+            IUserService userService, IEmailService emailService, IConfiguration configuration,
+            RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _userService = userService;
             _emailService = emailService;
             _configuration = configuration;
+            _roleManager = roleManager;
         }
         public async Task<IdentityResult> CreateUserAsync(SignUpUserModel userModel)
         {
